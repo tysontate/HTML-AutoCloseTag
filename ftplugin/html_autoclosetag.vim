@@ -30,8 +30,8 @@ fun s:Return()
 	let tag = s:GetCurrentTag()
 	if(tag != '' && match(getline('.'), '</'.tag.'>') > -1)
 		return pumvisible() ? 
-				\ "\<space>\<bs>\<cr>\<cr>\<up>"
-				\ : "\<cr>\<cr>\<up>"
+				\ "\<space>\<bs>\<cr>\<cr>\<up>\<tab>"
+				\ : "\<cr>\<cr>\<up>\<tab>"
 	else
 		return "\<cr>"
 	endif
