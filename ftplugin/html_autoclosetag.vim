@@ -1,11 +1,13 @@
 " File:         HTML AutoCloseTag.vim
 " Author:       Michael Sanders (msanders42 [at] gmail [dot] com)
-" Last Updated: April 7 2009
-" Version:      0.3
+" Last Updated: September 26 2012
+" Version:      0.4
 " Description:  Automatically closes HTML tag once you finish typing it with >
 "
-" Modified:     (Tyson Tate) Remove detection of "already closed" tags -- this
-"               was buggy and annoying in many situations.
+" Modified:     September 26 2012 - Tyson Tate - Remove detection of already
+"               closed tags -- this was buggy and annoying in most situations.
+"
+"               September 26 2012 - Tyson Tate - Auto-close dt and dd tags.
 
 if exists('b:mapped_auto_closetag') || &cp | finish | endif
 let b:mapped_auto_closetag = 1
@@ -50,7 +52,7 @@ fun s:CloseTag()
 	if line[col] !~ '\w\|<\|>' && !s:InComment()
 		let tag = s:GetCurrentTag()
 		" Insert closing tag if tag is not self-closing
-		if tag != '' && tag !~ '\vimg|input|link|meta|br|hr|area|base|param|dd|dt'
+		if tag != '' && tag !~ '\vimg|input|link|meta|br|hr|area|base|param'
 			let line = substitute(line, '\%'.col.'c', '</'.escape(tag, '/').'>', '')
 			call setline('.', line)
 			call cursor(0, col)
